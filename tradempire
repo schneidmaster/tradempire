@@ -1,0 +1,729 @@
+0->V:0->W:0->X:0->Y:0->Z:500->D:0->T:0->P:0->B:0->S:0->C:0->O:0->U:0->R
+If L=0
+Then
+  " NO GAME"->Str0
+  " NO GAME"->Str9
+End
+If L=1
+Then
+  " NO GAME"->Str0
+End
+If L=2
+Then
+  "NO GAME"->Str9
+End
+Goto 0
+Lbl DF:500->Q:1->theta:Goto 0
+Lbl H
+ClrHome
+Disp "You are a modern","trader trying","to build up a","trading empire.":Pause :ClrHome
+Disp "You can buy and","sell items to","make a profit."
+Pause 
+ClrHome
+Disp "You can travel","to different","places via plane","or train.","The train takes","longer,but is","cheaper.":Pause :ClrHome:Disp "Money in the","bank earns 1.5","percent interest","every time you","travel."
+Pause 
+ClrHome
+Disp "Borrowed money","accrues interest","at a rate of 10","percent per","trip."
+Pause 
+ClrHome
+Disp "Note: You need","1,000 blocks of","free RAM to run","this program.","To check this,","press {2nd,Mem,","2}."
+Pause 
+ClrHome
+Disp "You can only","hold 50 crates","of merchandise","at a time."
+Pause 
+ClrHome
+Goto 0
+Lbl S
+If R=1:Then:Goto 2S:Else:
+  ClrHome:Menu("  Items to sell ","     Toys      ",1,"    Posters     ",2,"     Books     ",3,"   Souvenirs   ",4,"    Comics     ",5,"     Back      ",M)
+  Lbl 2S:Menu("  Items To Sell ","     Toys",1,"    Posters",2,"     Books",3,"   Souvenirs",4,"    Comics",5,"     Car",VH,"     Back",M)
+  Lbl VH
+  ClrHome
+  Disp "Sell car for","20,000?"
+  Pause 
+  Menu("    Sell car?   ","     Yes",SY,"      No",M,"     Back",S)
+  Lbl SY
+  0->R
+  D+20000->D
+  Goto M
+  Lbl 1:Disp "You have":Output(1,11,T):Input "Sell?",M:round(M,0):If M<0:Goto 1:If M>T:Goto 1:If M<=T:D+(M*V)->D:T-M->T:Goto I
+  Lbl 2:Disp "You have":Output(1,11,P):Input "Sell?",M:round(M,0):If M<0:Goto 2:If M>P:Goto 2:If M<=P:D+(W*M)->D:P-M->P:Goto I
+  Lbl 3:Disp "You have":Output(1,11,B):Input "Sell?",M:round(M,0):If M<0:Goto 3:If M>B:Goto 3:If M<=B:D+(X*M)->D:B-M->B:Goto I
+  Lbl 4:Disp "You have":Output(1,11,S):Input "Sell?",M:round(M,0):If M<0:Goto 4:If M>S:Goto 4:If M<=S:D+(M*Y)->D:S-M->S:Goto I
+  Lbl 5:Disp "You have":Output(1,11,C):Input "Sell?",M:round(M,0):If M<0:Goto 5:If M>C:Goto 5:If M<=C:D+(Z*M)->D:C-M->C:Goto I
+  Lbl R
+  If D>1000000
+  Then
+    Goto AB
+    Else
+    If D>50000
+    Then
+      Goto 15
+      Else
+      Goto 16
+      Lbl 15
+      If R=1
+      Then
+        Goto 16
+        Else
+        ClrHome
+        randInt(1,30)->N
+        If N!=1
+        Then
+          Goto 16
+          Else
+          ClrHome
+          Disp "A dealer has","offered you a","car for 45,000","dollars. With a","car, travel is","free."
+          Pause 
+          Menu("  Accept offer? ","      Yes",17,"      No",16)
+          Lbl 17
+          D-45000->D
+          1->R
+          Goto 16
+          Lbl AB
+          If R=2
+          Then
+            Goto 16
+            Else
+            randInt(1,50)->M
+            If M!=1
+            Then
+              Goto 16
+              Else
+              ClrHome
+              Disp "A dealer has","offered you an","airplane for","500,000."
+              Pause 
+              ClrHome
+              Disp "If you have a","car,it will be","traded in for a","20,000 discount."
+              Pause 
+              ClrHome
+              Disp "Warning:","You can never","sell your plane."
+              Pause 
+              Menu("  Buy Airplane? ","     Yes",AY,"      No",16)
+              Lbl AY
+              2->R
+              D-480000->D
+              Goto 16
+              Lbl 16
+              ClrHome:Menu("  Items to buy  ","     Toys      ",7,"    Posters    ",8,"     Books     ",9,"   Souvenirs   ",10,"    Comics     ",11,"     Back      ",M)
+              Lbl 7:Disp "Can buy":D/V->N:round(N,0)->N:If N>50:50->N:Output(1,13,N):Input "Buy how many?",M:round(M,0):If (T+P+B+S+C)>50:Goto 7:If M<0:Goto 7:If M>N:Goto 7:If M<=N:D-(M*V)->D:T+M->T:Goto I
+              Lbl 8:Disp "Can buy":D/W->N:round(N,0)->N:If N>50:50->N:Output(1,13,N):Input "Buy how many?",M:round(M,0):If (T+P+B+S+C)>50:Goto 7:If M<0:Goto 8:If M>N:Goto 8:If M<=N:D-(M*W)->D:P+M->P:Goto I
+              Lbl 9:Disp "Can buy":D/X->N:round(N,0)->N:If N>50:50->N:Output(1,13,N):Input "Buy how many?",M:round(M,0):If (T+P+B+S+C)>50:Goto 9:If M<0:Goto 9:If M>N:Goto 9:If M<=N:D-(M*X)->D:B+M->B:Goto I
+              Lbl 10:Disp "Can buy":D/Y->N:round(N,0)->N:If N>50:50->N:Output(1,13,N):Input "Buy how many?",M:round(M,0):If (T+P+B+S+C)>50:Goto 10:If M<0:Goto 10:If M>N:Goto 10:If M<=N:D-(M*Y)->D:S+M->S:Goto I
+              Lbl 11:Disp "Can buy":D/Z->N:round(N,0)->N:If N>50:50->N:Output(1,13,N):Input "Buy how many?",M:round(M,0):If (T+P+B+S+C)>50:Goto 11:If M<0:Goto 11:If M>N:Goto 11:If M<=N:D-(M*Z)->D:C+M->C:Goto I
+              Lbl Z
+              Menu("   TradeEmpire  ","   New game",NG,"     Load",LD,"     Help",H,"    Options",OP,"    Credits",CR,"     Quit",QQ)
+              Lbl OP
+              Menu("     Options    ","  Text Speed",TS," Instructions",IN," Erase Saved",EG,"    Default",DF,"     Back",Z)
+              Lbl EG
+              ClrHome
+              Menu("   Erase Saved  ","    Slot 1",Stheta,"    Slot 2",Ttheta,"     Back",Z)
+              Lbl Stheta
+              DelVar Str0
+              Goto Z
+              Lbl Ttheta
+              DelVar Str9
+              Goto Z
+              Goto Z
+              Lbl TS
+              Menu("   Text Speed   ","     Slow",SL,"    Medium",ME,"     Fast",FA,"     Back",Z)
+              Lbl SL
+              500->Q
+              Goto Z
+              Lbl ME
+              250->Q
+              Goto Z
+              Lbl FA
+              75->Q
+              Goto Z
+              Lbl IN
+              Menu("  Instructions  ","      On",ON,"      Off",OF,"     Back",Z)
+              Lbl ON
+              1->theta
+              Goto Z
+              Lbl OF
+              0->theta
+              Goto Z
+              Lbl CR
+              0->M
+              ClrHome
+              Disp "   Programmer:"," Zach Schneider"
+              Pause 
+              ClrHome
+              Disp "     Advice:","Chuck Richardson","  Chris Shrout","   ticalc.org"
+              Pause 
+              ClrHome
+              Disp "  TradeEmpire"," Copyright 2007"," Us Games Mini","      CEO:"," Brian Sultzman"
+              Pause 
+              ClrHome
+              Output(6,2,".")
+              Output(5,4,".")
+              Output(4,6,".")
+              Output(4,7,".")
+              Output(4,8,".")
+              Output(4,9,".")
+              Output(4,10,".")
+              Output(5,12,".")
+              Output(6,14,".")
+              Output(6,8,"theta")
+              Output(2,6,"Mini")
+              Pause 
+              ClrHome
+              Goto 0
+              Lbl NG
+              If theta=0 or theta=3
+              Then
+                Goto C
+                Else
+                0->M
+            ClrHome:Disp "Welcome to","TradeEmpire,","budding young","entrepenuer!":For(M,1,Q):getKey->A:End:0->M:ClrHome:Disp "Choose a city in","which to start","your career.":For(M,1,Q):getKey->N:End:ClrHome:Goto C
+                Lbl T:If R=1:Then:Goto T2:Else:If R=2:Then:Goto T1:Else:Menu("Travel-Cost-Time","  Plane-125-1  ",A,"  Train-75-4   ",B," Back to City  ",M)
+                    Lbl A:D-125->D:U*1.015->U:O*1.1->O:round(U,0)->U:round(O,0)->O:round(D,0)->D
+                    0->N
+                    Lbl T1
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling"
+                    End
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling.")
+                    End
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling.."
+                    End
+                    0->M
+                    For(M,1,1)
+                      ClrHome
+                      Output(4,4,"Traveling...")
+                    End
+                    IS>(N,0)
+                    Goto T1
+                    ClrHome
+                    Goto C
+                    Lbl B:D-75->D:U*1.015->U:O*1.1->O:round(U,0)->U:round(O,0)->O:round(D,0)->D
+                    0->N
+                    Lbl T2
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling"
+                    End
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling.")
+                    End
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling.."
+                    End
+                    0->M
+                    For(M,1,10)
+                      ClrHome
+                      Output(4,4,"Traveling...")
+                    End
+                    IS>(N,3)
+                    Goto T2
+                    ClrHome
+                    Goto C
+                    Lbl C:Menu("   Travel to    ","    London",P,"  Los Angeles",P," New York City",P,"     Paris",P,"   Tel Aviv",P,"     Tokyo",P,"Washington D.C.",P)
+                    Lbl P
+                    randInt(10,100)->V:randInt(150,500)->W:randInt(200,550)->X:randInt(500,1000)->Y:randInt(2500,6000)->Z
+                    Lbl Y
+                    0->M
+                    ClrHome
+                    Output(1,1,"Prices here are:")
+                  Output(3,1,"Toys"):Output(4,1,"Posters"):Output(5,1,"Books"):Output(6,1,"Souvenirs"):Output(7,1,"Comics"):Output(3,9,V):Output(4,9,W):Output(5,9,X):Output(6,9,Y):Output(7,9,Z):For(M,1,Q):getKey->N:End:ClrHome:Goto M
+                    Lbl 15
+                    D-15000->D:1->A:Goto M
+                    Lbl M:Menu("     Actions    ","     Buy",R,"     Sell",S,"    Travel",T," Check Prices",Y,"   Inventory",I,"     More",MO,"     Quit",0)
+                    Lbl MO
+                    Menu("     Actions    ","     Bank",BA,"    Lender",LE,"   Tip Kiosk",TK,"    Options",P2,"     Save",SV,"     Back",M,"     Quit",QQ)
+                    Lbl P2
+                    Menu("     Options    ","  Text Speed",S2," Instructions",I2," Erase Saved",ES,"    Defaults",D2,"     Back",M)
+                    Lbl ES
+                    Menu("   Erase Saved  ","     Slot 1",E1,"     Slot 2",E2,"     Back",Z)
+                    Lbl E1
+                    DelVar Str0
+                    If L=1
+                    Then
+                      0->L
+                    End
+                    If L=3
+                    Then
+                      2->L
+                    End
+                    Goto M
+                    Lbl E2
+                    DelVar Str9
+                    If L=2
+                    Then
+                      0->L
+                    End
+                    If L=3
+                    Then
+                      1->L
+                    End
+                    Goto M
+                    Lbl D2
+                    500->Q
+                    1->theta
+                    Goto M
+                    Lbl S2
+                    Menu("   Text Speed   ","     Slow",LS,"    Medium",EM,"     Fast",AF,"     Back",P2)
+                    Lbl LS
+                    500->Q
+                    Goto M
+                    Lbl EM
+                    250->Q
+                    Goto M
+                    Lbl AF
+                    75->Q
+                    Goto M
+                    Lbl I2
+                    Menu("  Instructions  ","      On",1I,"      Off",2I,"     Back",P2)
+                    Lbl 1I
+                    1->theta
+                    Goto M
+                    Lbl 2I
+                    0->theta
+                    Goto M
+                    Lbl BA
+                    If theta=0
+                    Then
+                      Goto S8
+                      Else
+                      ClrHome
+                      0->M
+                      Disp "Welcome to","Barry's Bank.","Watch your money","grow at 1.5","percent a month."
+                      For(M,1,Q)
+                        A
+                      End
+                      Lbl S8
+                      Menu("      Bank      ","    Deposit",DE,"   Withdraw    ",WI,"       Exit",M)
+                      Lbl DE
+                      ClrHome
+                      Input "Deposit how much",M
+                      If M>D
+                      Goto BA
+                      If M<0
+                      Goto BA
+                      If M<=D and M>=0
+                      D-M->D
+                      M+U->U
+                      ClrHome
+                      Disp "Thank you!"
+                      Pause 
+                      Goto M
+                      Lbl WI
+                      ClrHome
+                      Input "How much?",M
+                      If M>U
+                      Goto WI
+                      If M<0
+                      Goto WI
+                      If M<=U and M>=0
+                      U-M->U
+                      D+M->D
+                      ClrHome
+                      Disp "Thank you!"
+                      Pause 
+                      Goto M
+                      Lbl LE
+                      If theta=0
+                      Then
+                        Goto S3
+                        Else
+                        ClrHome
+                        0->M
+                        Disp "Welcome to","Larry's Lenders."
+                        For(M,1,Q)
+                          A
+                        End
+                        ClrHome
+                        0->M
+                        Disp "You can borrow","up to twice your","current funds,","with a low,low","rate of 10 per-","cent a month."
+                        For(M,1,Q)
+                          A
+                        End
+                        Lbl S3
+                        Menu("Lender","Borrow",BO,"Pay back",PB,"Exit",M)
+                        Lbl BO
+                        ClrHome
+                        Input "Borrow how much?",M
+                        If O>0
+                        Then
+                          ClrHome
+                          Disp "Pay back your","first loan,first"
+                          Pause 
+                          Goto LE
+                          Else
+                          If M>(2*D)
+                          Then
+                            ClrHome
+                            Disp "Sorry,thats too","much."
+                            Pause 
+                            Goto LE
+                            Else
+                            If M<0
+                            Then
+                              Goto LE
+                              Else
+                              D+M->D
+                              O+M->O
+                              ClrHome
+                              Disp "Thank you!"
+                              Pause 
+                              Goto M
+                              Lbl PB
+                              ClrHome
+                              Input "How much?",M
+                              If M>D
+                              Goto PB
+                              If M<0
+                              Goto PB
+                              If M<=D and M>=0
+                              D-M->D
+                              O-M->O
+                              If O<0
+                              Then
+                                U+(~O)->U
+                                Else
+                                ClrHome
+                                Disp "Thank you!"
+                                Pause 
+                                Goto M
+                                Lbl TK
+                                If theta=0
+                                Then
+                                  Goto S5
+                                  Else
+                                  ClrHome
+                                  Disp "Welcome to the","Tip Kiosk.","10 dollars will","buy you a tip."
+                                  Pause 
+                                  Lbl S5
+                                  Menu("    Buy Tip?    ","      Yes",TY,"      No",TK,"     Exit",M)
+                                  Lbl TY
+                                  D-10->D
+                                  randInt(1,7)->M
+                                  If M=1
+                                  Then
+                                    ClrHome
+                                    Disp "Dont eat yellow","snow."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=2
+                                  Then
+                                    ClrHome
+                                    Disp "Buy items at a","low cost,and","sell at a high","price."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=3
+                                  Then
+                                    ClrHome
+                                    Disp "Don't drink and","drive."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=4
+                                  Then
+                                    ClrHome
+                                    Disp "Don't use the","moneylender.","His interest","rate is too high"
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=5
+                                  Then
+                                    ClrHome
+                                    Disp "If the TV doesnt","work, call a","repairman."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=6
+                                  Then
+                                    ClrHome
+                                    Disp "5,000,000 dollar","beats the game."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  If M=7
+                                  Then
+                                    ClrHome
+                                    Disp "There are five","rankings."
+                                    Pause 
+                                    Goto TK
+                                  End
+                                  Lbl ZZ
+                                  ClrHome
+                                  Goto 9
+                                  Lbl QQ
+                                  ClrHome
+                                  Stop
+                                  Lbl I:ClrHome:Output(1,5,"Inventory"):Output(2,1,"Toys:"):Output(3,1,"Posters:"):Output(4,1,"Books:"):Output(5,1,"Souvenirs:"):Output(6,1,"Comics:"):Output(7,1,"Cash:"):Output(8,1,"Rank:")
+                                  Output(2,12,T):Output(3,12,P):Output(4,12,B):Output(5,12,S):Output(6,12,C):Output(7,10,D)
+                                  U+D->M
+                                  M->N
+                                  Lbl ZS
+                                  If N=pi
+                                  Goto ZS
+                                  If N<0
+                                  Then
+                                    Goto 49
+                                  End
+                                  If N>=0 and N<5000
+                                  Then
+                                    Goto 50
+                                  End
+                                  If N>=5000 and N<=20000
+                                  Then
+                                    Goto 51
+                                  End
+                                  If N>=20000 and N<70000
+                                  Then
+                                    Goto 52
+                                  End
+                                  If N>=70000 and N<150000
+                                  Then
+                                    Goto 53
+                                  End
+                                  If N>=150000 and N<5000000
+                                  Then
+                                    Goto 54
+                                  End
+                                  If N>=5000000
+                                  Then
+                                    Goto 55
+                                  End
+                                  Lbl 49
+                                  Output(8,9,"Beggar")
+                                  Pause 
+                                  Goto 60
+                                  Lbl 50
+                                  Output(8,9,"Trader")
+                                  Pause 
+                                  Goto 60
+                                  Lbl 51
+                                  Output(8,9,"Captain"
+                                  Pause 
+                                  Goto 60
+                                  Lbl 52
+                                  Output(8,9,"Master")
+                                  Pause 
+                                  Goto 60
+                                  Lbl 53
+                                  Output(8,9,"Warlord")
+                                  Pause 
+                                  Goto 60
+                                  Lbl 54
+                                  Output(8,9,"Emperor")
+                                  Pause 
+                                  Goto 60
+                                  Lbl 60
+                                  ClrHome
+                                  Output(1,5,"Inventory")
+                                  Output(2,1,"Space:")
+                                  Output(3,1,"Bank:")
+                                  Output(4,1,"You owe:"
+                                  50-(T+P+B+S+C)->N
+                                  Output(2,10,N)
+                                  Output(3,10,U)
+                                  Output(4,10,O)
+                                  Pause 
+                                  0->N
+                                  Goto M
+                                  Lbl 55
+                                  ClrHome
+                                  0->M
+                                  Disp "You retire and","bask in the","glory of your","riches."
+                                  For(M,1,500)
+                                    getKey->N
+                                  End
+                                  Goto CR
+                                  Lbl SV
+                                  Menu("      Save      ","     Slot 1",1S,"     Slot 2",XY,"     Back",M)
+                                  Lbl 1S
+                                  If L=1 or L=3
+                                  Then
+                                    Goto O2
+                                  End
+                                  If L=0
+                                  Then
+                                    1->L
+                                  End
+                                  If L=2
+                                  Then
+                                    3->L
+                                  End
+                                  ClrHome
+                                  Disp "Name your slot."
+                                  Input Str0
+                                  Lbl O2
+                                  {T,P,B,S,C,D,U,O,R}->|LSAVE1
+                                  Goto VS
+                                  Lbl XY
+                                  If L=2 or L=3
+                                  Then
+                                    Goto O4
+                                  End
+                                  If L=0
+                                  2->L
+                                End
+                                If L=1
+                                3->L
+                              End
+                              Disp "Name your slot."
+                              Input Str9
+                              Lbl O4
+                              {T,P,B,S,C,D,U,O,R}->|LSAVE2
+                              Lbl VS
+                              0->M
+                              ClrHome
+                              For(M,1,100)
+                                Output(4,4,"Saving...")
+                              End
+                              ClrHome
+                              0->M
+                              Output(4,6,"Done")
+                              For(M,1,Q)
+                                getKey->N
+                              End
+                              Goto M
+                              Lbl LD
+                              Menu("      Load      ",Str0,1A,Str9,22,"Back",Z)
+                              Lbl 1A
+                              If L=1 or L=3
+                              Then
+                                Goto 1theta
+                                Else
+                                ClrHome
+                                Output(4,5,"No Game")
+                                Pause 
+                                Goto Z
+                                Lbl 1theta
+                                |LSAVE1(1)->T
+                                |LSAVE1(2)->P
+                                |LSAVE1(3)->B
+                                |LSAVE1(4)->S
+                                |LSAVE1(5)->C
+                                |LSAVE1(6)->D
+                                |LSAVE1(7)->U
+                                |LSAVE1(8)->O
+                                |LSAVE1(9)->R
+                                Goto DL
+                              End
+                              Lbl 22
+                              If L=2 or L=3
+                              Then
+                                Goto 2theta
+                                Else
+                                ClrHome
+                                Output(4,5,"No Game")
+                                Pause 
+                                Goto Z
+                                Lbl 2theta
+                                |LSAVE1(1)->T
+                                |LSAVE2(2)->P
+                                |LSAVE2(3)->B
+                                |LSAVE2(4)->S
+                                |LSAVE2(5)->C
+                                |LSAVE2(6)->D
+                                |LSAVE2(7)->U
+                                |LSAVE2(8)->O
+                                |LSAVE2(9)->R
+                                Goto DL
+                              End
+                              Lbl DL
+                              ClrHome
+                              0->M
+                              For(M,1,100)
+                                Output(4,4,"Loading...")
+                              End
+                              ClrHome
+                              0->M
+                              Output(4,2,"Game loaded!")
+                              For(M,1,Q)
+                                getKey->N
+                              End
+                              Goto T
+                              Lbl 0
+                              :"TE Logo
+                              ClrHome
+                              Output(6,1,"Trade")
+                              Output(2,9,"Empire"
+                              1->A:1->B
+                              For(A,1,4)
+                                For(B,1,8)
+                                  Output(A,B,"T")
+                                End
+                              End
+                              For(A,5,8)
+                                For(B,9,16)
+                                  Output(A,B,"E")
+                                End
+                              End
+                              1->A:1->B
+                              For(A,1,8)
+                                For(B,1,8)
+                                  Output(A,B," ")
+                                End
+                              End
+                              1->A:16->B
+                              For(A,1,8)
+                                For(B,9,16)
+                                  Output(A,B," ")
+                                End
+                              End
+                              Output(4,8,"T")
+                              Output(4,9,"E")
+                              0->M
+                              For(M,1,100)
+                              End
+                              ClrHome
+                              Output(4,7,"T")
+                              Output(4,10,"E")
+                              0->M
+                              For(M,1,100)
+                              End
+                              ClrHome
+                              Output(4,5,"T")
+                              Output(4,11,"E")
+                              0->M
+                              For(M,1,100)
+                              End
+                              Output(3,5,"T")
+                              Output(5,5,"T")
+                              Output(3,11,"E")
+                              Output(5,11,"E")
+                              0->M
+                              For(M,1,100)
+                              End
+                              Output(2,5,"T")
+                              Output(6,5,"T")
+                              Output(2,11,"E")
+                              Output(6,11,"E")
+                              0->M
+                              For(M,1,100)
+                              End
+                              2->A:3->B
+                              For(B,3,7)
+                                Output(A,B,"T")
+                              End
+                              Output(2,12,"E")
+                              Output(2,13,"E")
+                              Output(4,12,"E")
+                              Output(6,12,"E")
+                              Output(6,13,"E")
+                              Output(7,1,"   TradeEmpire")
+                              Output(8,2,"Zach Schneider"
+                              Pause 
+                              0->B
+                              ClrHome
+                              Goto Z
